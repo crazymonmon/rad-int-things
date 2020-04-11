@@ -29,6 +29,9 @@ class ImageHandler:
     def width(self):
         return self._width
 
+    def get_intensity(self, point: Point):
+        return self.img[int(point.x - 1), int(point.y - 1)]
+
     def add_intensity_of_points(self, list_of_points: list):
         intensity_sum = 0
 

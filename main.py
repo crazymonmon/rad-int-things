@@ -1,16 +1,16 @@
+import argparse
 import logging
-import sys
 
 from geometry_utils import generate_list_of_points
 from image_utils import ImageHandler
 
 
-def main(img_filepath):
+def main(args):
     logging.basicConfig(level=logging.INFO)
     logging.debug("Running main")
 
     # Get image data
-    img_h = ImageHandler(img_filepath)
+    img_h = ImageHandler(args.img_filepath)
 
     # Identify centre and radius of circle
     centre = img_h.centre
@@ -37,18 +37,29 @@ def main(img_filepath):
         #     img_h.show_img(1000)
 
         # Add the intensity of the pixels
-        integral = img_h.add_intensity_of_points(list_of_points)
+        sum_of_intensity = img_h.add_intensity_of_points(list_of_points)
 
         # store value of theta and value of pixel
-        print("%.2f, %d" % (theta, integral))
+        if args.num_points:
+            print("%.2f, %d" % (theta, len(list_of_points)))
+        elif args.show_all_points:
+            print("%.2f, %s" % (theta, ", ".join(list(map(lambda x: str(img_h.get_intensity(x)), list_of_points)))))
+        else:
+            print("%.2f, %d" % (theta, sum_of_intensity))
 
     # Uncomment to debug
     # img_h.show_img(0)
 
 
 if __name__ == "__main__":
-    filepath = "./img.png"
-    if len(sys.argv) == 2:
-        filepath = sys.argv[1]
+    parser = argparse.ArgumentParser()
+    parser.add_argument("img_filepath", help="Filepath of image")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--num_points", action="store_true", default=False,
+                       help="Display number of points for every theta")
+    group.add_argument("--show_all_points", action="store_true", default=False,
+                       help="Display value of all the points for every theta")
 
-    main(filepath)
+    parsed_args = parser.parse_args()
+
+    main(parsed_args)
