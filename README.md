@@ -16,3 +16,4 @@ As we are using basic operations only any version of openCV 3+ should work
 intensity for every theta.
 3. `python3 main.py --show_all_points <filepath of image>` will display the intensity of all the points which added to 
 calculate the sum of intensity
+4. Passing the flag `--verbose` will display the debug logs

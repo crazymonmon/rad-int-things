@@ -6,8 +6,8 @@ from image_utils import ImageHandler
 
 
 def main(args):
-    logging.basicConfig(level=logging.INFO)
-    logging.debug("Running main")
+    log_level = logging.DEBUG if args.verbose else logging.INFO
+    logging.basicConfig(level=log_level)
 
     # Get image data
     img_h = ImageHandler(args.img_filepath)
@@ -59,6 +59,8 @@ if __name__ == "__main__":
                        help="Display number of points for every theta")
     group.add_argument("--show_all_points", action="store_true", default=False,
                        help="Display value of all the points for every theta")
+    parser.add_argument("--verbose", action="store_true", default=False,
+                        help="Verbose mode")
 
     parsed_args = parser.parse_args()
 
