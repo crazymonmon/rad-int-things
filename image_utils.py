@@ -30,14 +30,13 @@ class ImageHandler:
         return self._width
 
     def get_intensity(self, point: Point):
-        return self.img[int(point.x - 1), int(point.y - 1)]
+        return self.img[(point.x - 1), (point.y - 1)]
 
     def add_intensity_of_points(self, list_of_points: list):
         intensity_sum = 0
 
         for point in list_of_points:
-            # FIXME: Why does the x and y need to be cast to int?
-            intensity_sum = intensity_sum + self.img[int(point.x - 1), int(point.y - 1)]
+            intensity_sum = intensity_sum + self.img[(point.x - 1), (point.y - 1)]
             # logging.debug("Intensity is %d at %s" % (self.img[int(point.x - 1), int(point.y - 1)], point))
 
         return intensity_sum
