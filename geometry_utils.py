@@ -49,7 +49,7 @@ def generate_list_of_points(theta: float, radius: int, centre: Point):
             x = centre.x + dx * (y - centre.y) / dy
             list_of_points.append(Point(x, y))
     elif theta < 360:
-        for x in range(target_point.x, centre.x + 1):
+        for x in range(centre.x, target_point.x + 1):
             # y  = y1 + (x - x1)/m
             y = centre.y + dy * (x - centre.x)/dx
             list_of_points.append(Point(x, y))
