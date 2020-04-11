@@ -11,7 +11,7 @@ As we are using basic operations only any version of openCV 3+ should work
 2. Run `python3 main.py <filepath of image>`
 
 ### Optional arguments
-1. `python3 main.py -h` will display usage.
+1. `python3 main.py -h` will display usage help.
 2. `python3 main.py --num_points <filepath of image>` will display the number of points used to compute the sum of 
 intensity for every theta.
 3. `python3 main.py --show_all_points <filepath of image>` will display the intensity of all the points which added to 
