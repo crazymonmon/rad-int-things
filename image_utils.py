@@ -10,6 +10,9 @@ class ImageHandler:
     def __init__(self, filepath):
         self.img = cv2.imread(filepath, cv2.IMREAD_GRAYSCALE)
 
+        if self.img is None:
+            raise Exception("Invalid image.")
+
         rows, cols = self.img.shape
         self._centre = Point(int(rows / 2), int(cols / 2))
         self._width = rows if rows <= cols else cols
@@ -35,3 +38,7 @@ class ImageHandler:
             # logging.debug("Intensity is %d at %s" % (self.img[int(point.x - 1), int(point.y - 1)], point))
 
         return intensity_sum
+
+    def show_img(self, delay=0):
+        cv2.imshow("img", self.img)
+        cv2.waitKey(delay)
