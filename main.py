@@ -67,7 +67,7 @@ if __name__ == "__main__":
     group.add_argument("--show_all_points", action="store_true", default=False,
                        help="Display value of all the points for every theta")
     parser.add_argument("--step_size", metavar="N", default=1.0, type=float,
-                        help="Degrees in which theta will be incremented. NOTE: Must be <= 1.")
+                        help="Degrees in which theta will be incremented.")
     parser.add_argument("--verbose", action="store_true", default=False,
                         help="Verbose mode")
 
