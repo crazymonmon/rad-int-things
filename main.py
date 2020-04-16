@@ -26,7 +26,10 @@ def main(args):
     #     img_h.show_img(10)
 
     # Increment value of theta
-    for theta in range(0, 360, 1):
+    theta = 0.0
+    theta_step_size = args.step_size
+
+    while theta < 360:
         # For each value of theta identify the the points
         list_of_points = generate_list_of_points(theta, radius, centre)
 
@@ -47,18 +50,24 @@ def main(args):
         else:
             print("%.2f, %d" % (theta, sum_of_intensity))
 
+        # Increment theta
+        theta = round(theta + theta_step_size, 2)
+
     # Uncomment to debug
     # img_h.show_img(0)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+
     parser.add_argument("img_filepath", help="Filepath of image")
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--num_points", action="store_true", default=False,
                        help="Display number of points for every theta")
     group.add_argument("--show_all_points", action="store_true", default=False,
                        help="Display value of all the points for every theta")
+    parser.add_argument("--step_size", metavar="N", default=1.0, type=float,
+                        help="Degrees in which theta will be incremented. NOTE: Must be <= 1.")
     parser.add_argument("--verbose", action="store_true", default=False,
                         help="Verbose mode")
 
